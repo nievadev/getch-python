@@ -3,6 +3,8 @@
 
 **How to use**:<br>
 ```Python
-char = getch()
+from Getch import getch
+
+char = getch(10) # First arg is the amount of characters we wanna get
 print(char)
 ```
