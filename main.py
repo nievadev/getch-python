@@ -12,6 +12,3 @@ def getch(chars):
     termios.tcsetattr(file_descriptor, termios.TCSADRAIN, terminal_settings) # Reset terminal to normal state
 
     return character
-
-ch = getch(10)
-print(ch)
