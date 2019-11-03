@@ -3,6 +3,6 @@
 
 **How to use**:<br>
 ```Python
-getch = Getch()
-character = getch() # Returns pressed character
+char = getch()
+print(char)
 ```
