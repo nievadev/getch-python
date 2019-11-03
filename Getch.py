@@ -1,6 +1,6 @@
 import termios, sys, tty
 
-def getch(chars):
+def getch(chars = 1):
     file_descriptor = sys.stdin.fileno()
 
     terminal_settings = termios.tcgetattr(file_descriptor)

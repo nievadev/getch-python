@@ -7,4 +7,7 @@ from Getch import getch
 
 char = getch(10) # First arg is the amount of characters we wanna get
 print(char)
+
+char = getch() # Get a single character
+print(char)
 ```
