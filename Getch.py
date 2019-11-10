@@ -1,11 +1,14 @@
 import termios, sys, tty
 
-def getch(chars = 1):
+def getch(chars = 1, raw = False):
     file_descriptor = sys.stdin.fileno()
 
     terminal_settings = termios.tcgetattr(file_descriptor)
 
-    tty.setraw(file_descriptor) # Setting raw mode
+    if raw:
+        tty.setraw(file_descriptor) # Setting raw mode
+    else:
+        tty.setcbreak(file_descriptor) # Setting raw mode
 
     character = sys.stdin.read(chars)
 
