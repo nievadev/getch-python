@@ -20,5 +20,6 @@ class Getch:
     def __str__(self):
         return self.ch
 
-    def turn_normal(self):
+    @staticmethod
+    def turn_normal():
         termios.tcsetattr(FD, termios.TCSADRAIN, SETTINGS)
