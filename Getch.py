@@ -11,11 +11,14 @@ class Getch:
             tty.setcbreak(FD)
 
         self.ch = sys.stdin.read(chars)
-        
-        termios.tcsetattr(FD, termios.TCSADRAIN, SETTINGS)
+
+        self.turn_normal()
 
     def __call__(self):
         return self.ch
 
     def __str__(self):
         return self.ch
+
+    def turn_normal(self):
+        termios.tcsetattr(FD, termios.TCSADRAIN, SETTINGS)
