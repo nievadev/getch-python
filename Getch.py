@@ -1,17 +1,21 @@
 import termios, sys, tty
 
-def getch(chars = 1, raw = False):
-    file_descriptor = sys.stdin.fileno()
+FD = sys.stdin.fileno()
+SETTINGS = termios.tcgetattr(FD)
 
-    terminal_settings = termios.tcgetattr(file_descriptor)
+class Getch:
+    def __init__(self, chars = 1, raw = False):
+        if raw:
+            tty.setraw(FD)
+        else:
+            tty.setcbreak(FD)
 
-    if raw:
-        tty.setraw(file_descriptor) # Setting raw mode
-    else:
-        tty.setcbreak(file_descriptor) # Setting raw mode
+        self.ch = sys.stdin.read(chars)
+        
+        termios.tcsetattr(FD, termios.TCSADRAIN, SETTINGS)
 
-    character = sys.stdin.read(chars)
+    def __call__(self):
+        return self.ch
 
-    termios.tcsetattr(file_descriptor, termios.TCSADRAIN, terminal_settings) # Reset terminal to normal state
-
-    return character
+    def __str__(self):
+        return self.ch
